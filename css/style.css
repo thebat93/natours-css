@@ -8,9 +8,44 @@
   /* наследование свойства всех элементов у box-sizing в body */
   box-sizing: inherit; }
 
-/* root font size 10 px = 1rem */
+/* root font size 10 px = 1rem (100% = 16 px) */
 html {
   font-size: 62.5%; }
+
+body {
+  /* height и width задаются для всего контейнера */
+  box-sizing: border-box; }
+
+/* анимация главной части заголовка */
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem); }
+  80% {
+    transform: translateX(1rem); }
+  100% {
+    opacity: 1;
+    transform: translateX(0); } }
+
+/* анимация второстепенной части заголовка */
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem); }
+  80% {
+    transform: translateX(-1rem); }
+  100% {
+    opacity: 1;
+    transform: translateX(0); } }
+
+/* кнопка появляется из ниоткуда снизу */
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem); }
+  100% {
+    opacity: 1;
+    transform: translateY(0); } }
 
 body {
   /* настройка шрифтов всегда в body */
@@ -20,37 +55,7 @@ body {
   line-height: 1.7;
   color: #777;
   /* белая полоса по краям сайта */
-  padding: 3rem;
-  /* height и width задаются для всего контейнера */
-  box-sizing: border-box; }
-
-.header {
-  height: 95vh;
-  /* два бэкграунда: градиент (выбираем направление) и картинка */
-  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url("../img/hero.jpg");
-  /* вписываем картинку в блок */
-  background-size: cover;
-  /* прикрепляем верхушку картинки к верхнему краю */
-  background-position: top;
-  /* отрезаем угол */
-  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-  position: relative; }
-  .header__logo-box {
-    position: absolute;
-    top: 4rem;
-    left: 4rem; }
-  .header__logo {
-    /* логотип */
-    height: 3.5rem; }
-  .header__text-box {
-    /* контейнер для контента в хэдере */
-    /* устанавливаем в центр */
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    /* для отцентровки кнопки (инлайн элемент) */
-    text-align: center; }
+  padding: 3rem; }
 
 /* заголовок */
 .heading-primary {
@@ -78,28 +83,6 @@ body {
     font-weight: 700;
     letter-spacing: 1.7rem;
     animation: moveInRight 1s ease-out; }
-
-/* анимация главной части заголовка */
-@keyframes moveInLeft {
-  0% {
-    opacity: 0;
-    transform: translateX(-10rem); }
-  80% {
-    transform: translateX(1rem); }
-  100% {
-    opacity: 1;
-    transform: translateX(0); } }
-
-/* анимация второстепенной части заголовка */
-@keyframes moveInRight {
-  0% {
-    opacity: 0;
-    transform: translateX(10rem); }
-  80% {
-    transform: translateX(-1rem); }
-  100% {
-    opacity: 1;
-    transform: translateX(0); } }
 
 .btn {
   /* кнопка-ссылка: обычное состояние и после того, как на нее нажали */ }
@@ -145,11 +128,30 @@ body {
     z-index: -1;
     transition: all .4s; }
 
-/* кнопка появляется из ниоткуда снизу */
-@keyframes moveInBottom {
-  0% {
-    opacity: 0;
-    transform: translateY(3rem); }
-  100% {
-    opacity: 1;
-    transform: translateY(0); } }
+.header {
+  height: 95vh;
+  /* два бэкграунда: градиент (выбираем направление) и картинка */
+  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url("../img/hero-small.jpg");
+  /* вписываем картинку в блок */
+  background-size: cover;
+  /* прикрепляем верхушку картинки к верхнему краю */
+  background-position: top;
+  /* отрезаем угол */
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  position: relative; }
+  .header__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem; }
+  .header__logo {
+    /* логотип */
+    height: 3.5rem; }
+  .header__text-box {
+    /* контейнер для контента в хэдере */
+    /* устанавливаем в центр */
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* для отцентровки кнопки (инлайн элемент) */
+    text-align: center; }

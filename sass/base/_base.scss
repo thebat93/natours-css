@@ -1,0 +1,21 @@
+// базовые настройки
+
+/* перезагрузка стилей браузеров. универсальный селектор */
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    /* наследование свойства всех элементов у box-sizing в body */
+    box-sizing: inherit;
+}
+
+/* root font size 10 px = 1rem (100% = 16 px) */
+html {
+    font-size: 62.5%;
+}
+
+body {
+    /* height и width задаются для всего контейнера */
+    box-sizing: border-box;
+}
