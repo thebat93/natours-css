@@ -1,0 +1,38 @@
+.card {
+    perspective: 150rem; // перспектива, добавляет ощущение переворота; применяется к детям
+    -moz-perspective: 150rem;
+    position: relative;
+    height: 50rem; // нужна высота потому что использовали флоаты
+
+    &__side { // сторона карточки
+        height: 50rem;
+        transition: all .8s ease;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        backface-visibility: hidden;
+        border-radius: 3px;
+        box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
+
+        &--front { // передняя сторона
+            background-color: $color-white;
+        }
+
+        &--back { // задняя сторона
+            transform: rotateY(180deg); // изначально повернута
+
+            &-1 {
+                background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark);
+            }
+        }
+    }
+
+    &:hover &__side--front { // поворот карточки по оси Y
+        transform: rotateY(180deg);
+    }
+
+    &:hover &__side--back { // поворот карточки по оси Y
+        transform: rotateY(0deg);
+    }
+}
