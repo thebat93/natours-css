@@ -13,6 +13,7 @@
     /* прикрепляем верхушку картинки к верхнему краю */
     background-position: top;
     /* отрезаем угол */
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
     clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
     position: relative;
     
