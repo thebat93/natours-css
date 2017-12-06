@@ -43,6 +43,15 @@
         }
     }
 
+    &--green {
+        background-color: $color-primary;
+        color: $color-white;
+        
+        &::after {
+            background-color: $color-primary;
+        }
+    }
+
     &::after { /* эффект для кнопки с использованием псевдоэлемента */
         content: "";
         display: inline-block;
