@@ -2,29 +2,57 @@
     width: 75%;
     margin: 0 auto; // центрирование: блок в блоке 
     box-shadow: 0 3rem 6rem rgba($color-black, .1);
-    background-color: $color-white;
+    background-color: rgba($color-white, .6);
     border-radius: 3px;
     padding: 6rem;
     padding-left: 9rem;
     font-size: $default-font-size;
-    transform: skewX(-12deg);
+    transform: skewX(-12deg); // превращаем прямоугольник в параллелограм
 
     &__shape { // круг с фотографией пользователя
         width: 15rem;
         height: 15rem;
         float: left;
         -webkit-shape-outside: circle(50% at 50% 50%);
-        shape-outside: circle(50% at 50% 50%); // чтобы текст "облипал" круг
+        shape-outside: circle(50% at 50% 50%); // чтобы текст "облипал" круг (Chrome, Opera)
         -webkit-clip-path: circle(50% at 50% 50%);
         clip-path: circle(50% at 50% 50%); // обрезаем квадрат по кругу
         transform: translateX(-3rem) skewX(12deg);
+        position: relative;
     }
 
-    &__image {
+    &__image { // картинка в круге
         height: 100%;
+        transform: translateX(-4rem) scale(1.4);
+        backface-visibility: hidden;
+        transition: all .5s;
     }
 
-    &__text {
+    &__text { 
         transform: skewX(12deg);
+    }
+
+    &__caption { // надпись в круге
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, 20%);
+        color: $color-white;
+        text-transform: uppercase;
+        text-align: center;
+        font-size: 1.7rem;
+        opacity: 0;
+        transition: all .5s;
+        backface-visibility: hidden; // хак чтобы текст не дрожал при анимации
+    }
+
+    &:hover &__caption { // по ховеру появляется надпись в круге
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+
+    &:hover &__image { // по ховеру картинка отдаляется, и к ней прикладываются фильтры
+        transform: translateX(-4rem) scale(1);
+        filter: blur(3px) brightness(80%);
     }
 }
