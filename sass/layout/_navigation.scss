@@ -1,0 +1,148 @@
+.navigation {
+    &__checkbox {
+        display:none;
+    }
+
+    &__button { // кнопка для доступа к меню
+        background-color: $color-white;
+        height: 7rem;
+        width: 7rem;
+        position: fixed;
+        top: 6rem;
+        right: 6rem;
+        border-radius: 50%;
+        z-index: 2000;
+        box-shadow: 0 1rem 3rem rgba($color-black, .1);
+        text-align: center;
+        cursor: pointer;
+    }
+
+    &__background { // задник меню; сначала находится за кнопкой
+        height: 6rem;
+        width: 6rem;
+        border-radius: 50%;
+        position: fixed;
+        top: 6.5rem;
+        right: 6.5rem;
+        background-image: radial-gradient($color-primary-light, $color-primary-dark);
+        z-index: 1000;
+        transition: transform .8s cubic-bezier(0.86, 0, 0.07, 1);
+    }
+
+    &__nav { // навигационный элемент, который покрывает все окно
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1500;
+
+        opacity: 0; // чтобы скрыть изначально
+        width: 0;
+        transition: all .8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    &__list { // меню
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        list-style: none;
+        text-align: center;
+        width: 100%;
+    }
+
+    &__item { // пункт меню
+        margin: 1rem;
+    }
+
+    &__link {
+        &:link,
+        &:visited { // обычное состояние
+            display: inline-block;
+            font-size: 3rem;
+            font-weight: 300;
+            padding: 1rem 2rem;
+            color: $color-white;
+            text-decoration: none;
+            text-transform: uppercase;
+            background-image: linear-gradient(120deg, transparent 0%, transparent 50%, $color-white 50%);
+            background-size: 225%; // сдвигает фон вправо
+            transition: all .4s;
+        }
+
+        span {
+            margin-right: 1.5rem;
+        }
+
+        &:hover,
+        &:active {
+            background-position: 100%; // сдвигает фон влево
+            color: $color-primary;
+            transform: translateX(1rem);
+        }
+    }
+
+    // Функционал
+    &__checkbox:checked ~ &__background { // чекбокс хак: при "чеке" увеличиваем фон
+        transform: scale(80);
+    }
+
+    &__checkbox:checked ~ &__nav { // чекбокс хак
+        opacity: 1;
+        width: 100%;
+    }
+
+    // Иконка
+    &__icon {
+        position: relative; // позиционирование относительно спана-палочки
+        margin-top: 3.5rem;
+
+        &,
+        &::before,
+        &::after { // для всех трех палочек
+            width: 3rem;
+            height: 2px;
+            background-color: $color-grey-dark-3;
+            display: inline-block;
+        }
+
+        &::before,
+        &::after { // для псевдоэлементов-палочек 
+            content: '';
+            position: absolute;
+            left: 0;
+            transition: all .2s;
+        }
+
+        &::before {
+            top: -.8rem;
+            // transform-origin: right; определяет относительно какой точки делать поворот
+        }
+
+        &::after {
+            top: .8rem;
+        }
+    }
+
+    &__button:hover &__icon::before {
+        top: -1rem;
+    }
+
+    &__button:hover &__icon::after {
+        top: 1rem;
+    }
+
+    &__checkbox:checked + &__button &__icon { // чекбокс хак
+        background-color: transparent;
+    }
+
+    &__checkbox:checked + &__button &__icon::before { // чекбокс хак
+        transform: rotate(225deg);
+        top: 0;
+    }
+
+    &__checkbox:checked + &__button &__icon::after { // чекбокс хак
+        transform: rotate(135deg);
+        top: 0;
+    }
+}
