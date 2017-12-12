@@ -1,2 +1,4 @@
-advanced-css-course-master project
-Natours CSS + SASS
+Project Natours - Сайт-визитка
+Курс Advanced CSS and SASS
+
+Optimized for Google Chrome
